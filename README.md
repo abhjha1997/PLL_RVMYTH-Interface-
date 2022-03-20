@@ -22,6 +22,83 @@ This will generate the required HDL file, two files generated are
 ## PLL Modelling-  
 PLL is the analog block so to integrate it creating the verilog code becomes a necessity, the functional verilog code is created for the PLL designed in the previous section- 
 
+                        
+                                        module avsdpll (
+                                        output reg  CLK,
+                                        input  wire VCO_IN,
+                                        input  wire ENb_CP,
+                                        input  wire ENb_VCO,
+                                        input  wire REF
+                                        );
+                                         real period, lastedge, refpd;
+
+                                         initial begin
+                                         lastedge = 0.0;
+                                        period = 25.0; // 25ns period = 40MHz
+                                         CLK <= 0;
+                                         end
+
+                                        // Toggle clock at rate determined by period
+                                        always @(CLK or ENb_VCO) begin
+                                        if (ENb_VCO == 1'b1) begin
+                                        #(period / 2.0);
+                                        CLK <= (CLK === 1'b0);
+                                        end
+                                        else if (ENb_VCO == 1'b0) begin
+                                        CLK <= 1'b0;
+                                         end 
+                                         else begin
+                                         CLK <= 1'bx;
+                                         end
+                                         end
+   
+                                        // Update period on every reference rising edge
+                                        always @(posedge REF) begin
+                                        if (lastedge > 0.0) begin
+                                        refpd = $realtime - lastedge;
+                                          period =  (refpd / 8.0) ;
+                                        end
+                                        lastedge = $realtime;
+                                         end
+                                        endmodule
+
+
+## Integration of PLL and rvmyth core:
+Using the Clock Pin the the PLL and the RVMYTH is connected and the functionality of the code is verified by the testbench.
+                                      
+                                       
+                                module vsdminisoc (
+                                output wire OUT,
+                                input  wire reset,
+                                input  wire VCO_IN,
+                                input  wire ENb_CP,
+                                input  wire ENb_VCO,
+                                input  wire REF,
+                                //input  wire VREFL,
+                                input  wire VREFH
+                                 );
+
+                                wire CLK;
+                                wire [9:0] RV_TO_DAC;
+   
+                                 rvmyth core (
+                                 .OUT(RV_TO_DAC),
+                                 .CLK(CLK),
+                                .reset(reset)
+                                 );
+
+                                avsdpll pll (
+                                .CLK(CLK),
+                                .VCO_IN(VCO_IN),
+                                .ENb_CP(ENb_CP),
+                                .ENb_VCO(ENb_VCO),
+                                 .REF(REF)
+                                  );  
+                                  endmodule
+
+
+
+
 
 
 
