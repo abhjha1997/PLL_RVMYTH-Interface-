@@ -19,7 +19,10 @@ After installing the sandpiper-saas tool the use the folloeing command to conver
 This will generate the required HDL file, two files generated are 
 ![image](https://user-images.githubusercontent.com/97835399/159148758-adbd68cc-41ca-4938-8b67-8bc2a8ca9c4a.png)
 
-## PLL Modelling 
+## PLL Modelling-  
+PLL is the analog block so to integrate it creating the verilog code becomes a necessity, the functional verilog code is created for the PLL designed in the previous section- 
+
+
 
 
 
