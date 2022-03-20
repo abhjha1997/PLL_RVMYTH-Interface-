@@ -1,5 +1,5 @@
 # VSDminiSOC 
-This Project deals with RISC-V based microprocessor and perform the physical design to get the Soc ready for tapeout, it consist of combining PLL with the rvmyth core and PLL is connected with the input clock to RVMYTH core. A testbench is created to test and analyze the working of the integrated subsystem.
+This Project deals with RISC-V based microprocessor and perform the physical design to get the SoC ready for tapeout, it consist of combining PLL with the rvmyth core and PLL is connected with the input clock to RVMYTH core. A testbench is created to test and analyze the working of the integrated subsystem.
 
 The first step consist of converting the RISC-V Processor TL-Verilog to to verilog file using Sandpiper-saas tool.
 
