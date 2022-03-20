@@ -15,7 +15,7 @@ https://pypi.org/project/sandpiper-saas/
 After installing the sandpiper-saas tool the use the folloeing command to convert into the verilog file the generated files are stored in the same directory.
                                         
                                 $ sandpiper-saas -i rvmyth.tlv -o rvmyth.sv --bestsv --noline -p verilog 
-                                
-As of now due to some error () the rvmyth.tlv file is not generated
-                                
+     
+This will generate the required HDL file.
+
    
