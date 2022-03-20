@@ -96,6 +96,17 @@ Using the Clock Pin the the PLL and the RVMYTH is connected and the functionalit
                                   );  
                                   endmodule
 
+All the files are added to the test bench using include "file.v" in the testbench written for vsdminisoc. The testbench is run using "iverilog" and the dumped file is obtained.
+![Screenshot 2022-03-20 120650](https://user-images.githubusercontent.com/97835399/159152280-9975d939-acf3-4534-8d5a-cbfedfccb0ee.png)
+Now the waveform of the integrated PLL and RVMYTH we use gtkwave.
+
+![image](https://user-images.githubusercontent.com/97835399/159152406-bc081145-8298-4939-b1c1-eeedb12b34a9.png)
+
+According to the current status the output waveform is not comming correctly...
+
+
+
+
 
 
 
