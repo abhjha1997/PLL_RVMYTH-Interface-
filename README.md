@@ -6,8 +6,16 @@ The first step consist of converting the RISC-V Processor TL-Verilog to to veril
 The sandpiper-saas tool is installed using the following commands in the following link:
 https://pypi.org/project/sandpiper-saas/
         
-$ sudo apt install make python python3 python3-pip git iverilog gtkwave docker.io
-$ sudo chmod 666 /var/run/docker.sock
-$ cd ~
-$ pip3 install pyyaml click sandpiper-saas
-      
+
+                                $ sudo apt install make python python3 python3-pip git iverilog gtkwave docker.io
+                                $ sudo chmod 666 /var/run/docker.sock
+                                $ cd ~
+                                $ pip3 install pyyaml click sandpiper-saas
+
+After installing the sandpiper-saas tool the use the folloeing command to convert into the verilog file the generated files are stored in the same directory.
+                                        
+                                $ sandpiper-saas -i rvmyth.tlv -o rvmyth.sv --bestsv --noline -p verilog 
+                                
+As of now due to some error () the rvmyth.tlv file is not generated
+                                
+   
