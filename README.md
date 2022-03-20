@@ -23,7 +23,7 @@ This will generate the required HDL file, two files generated are
 PLL is the analog block so to integrate it creating the verilog code becomes a necessity, the functional verilog code is created for the PLL designed in the previous section- 
 
                         
-                                        module avsdpll (
+                                        module pll1 (
                                         output reg  CLK,
                                         input  wire VCO_IN,
                                         input  wire ENb_CP,
@@ -87,7 +87,7 @@ Using the Clock Pin the the PLL and the RVMYTH is connected and the functionalit
                                 .reset(reset)
                                  );
 
-                                avsdpll pll (
+                               pll1 pll (
                                 .CLK(CLK),
                                 .VCO_IN(VCO_IN),
                                 .ENb_CP(ENb_CP),
@@ -102,7 +102,7 @@ Now the waveform of the integrated PLL and RVMYTH we use gtkwave.
 
 ![image](https://user-images.githubusercontent.com/97835399/159152406-bc081145-8298-4939-b1c1-eeedb12b34a9.png)
 
-According to the current status the output waveform is not comming correctly...
+As per the current status the output waveform is not comming correctly...
 
 
 
