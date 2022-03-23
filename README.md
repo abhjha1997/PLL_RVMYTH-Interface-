@@ -105,6 +105,11 @@ Now the waveform of the integrated PLL and RVMYTH we use gtkwave.
 
 ![image](https://user-images.githubusercontent.com/97835399/159637174-3c70157a-3df7-4d83-81d8-771d6e843748.png)
 
+## PLL Modelling: 
+Here we design the PLL as a clock multiplier and test the functionality. 
+
+
+
 
 
 
