@@ -19,10 +19,25 @@ After installing the sandpiper-saas tool the use the folloeing command to conver
 This will generate the required HDL file, two files generated are 
 ![image](https://user-images.githubusercontent.com/97835399/159148758-adbd68cc-41ca-4938-8b67-8bc2a8ca9c4a.png)
 
-## PLL Modelling-  
+## RYMYTH Simulation-   
 PLL is the analog block so to integrate it creating the verilog code becomes a necessity, the functional verilog code is created for the PLL designed in the previous section- 
 
-                        
+
+All the files are added to the test bench using include "file.v" in the testbench written for vsdminisoc. The testbench is run using "iverilog" and the dumped file is obtained.
+
+![Screenshot 2022-03-20 120650](https://user-images.githubusercontent.com/97835399/159152280-9975d939-acf3-4534-8d5a-cbfedfccb0ee.png)
+
+
+Now the waveform of the integrated PLL and RVMYTH we use gtkwave.
+
+![image](https://user-images.githubusercontent.com/97835399/159637174-3c70157a-3df7-4d83-81d8-771d6e843748.png)
+
+## PLL Modelling: 
+Here we design the PLL as a clock multiplier and test the functionality. 
+## Integration of PLL and rvmyth core:
+Using the Clock Pin the the PLL and the RVMYTH is connected and the functionality of the code is verified by the testbench. The verilog code for the above PLL is given below:
+
+
                                         module pll1 (
                                         output reg  CLK,
                                         input  wire VCO_IN,
@@ -61,11 +76,8 @@ PLL is the analog block so to integrate it creating the verilog code becomes a n
                                         lastedge = $realtime;
                                          end
                                         endmodule
-
-
-## Integration of PLL and rvmyth core:
-Using the Clock Pin the the PLL and the RVMYTH is connected and the functionality of the code is verified by the testbench.
-                                      
+                                        
+The Testbench for the PLL is given below:
                                        
                                 module vsdminisoc (
                                 output wire OUT,
@@ -95,18 +107,6 @@ Using the Clock Pin the the PLL and the RVMYTH is connected and the functionalit
                                  .REF(REF)
                                   );  
                                   endmodule
-
-All the files are added to the test bench using include "file.v" in the testbench written for vsdminisoc. The testbench is run using "iverilog" and the dumped file is obtained.
-
-![Screenshot 2022-03-20 120650](https://user-images.githubusercontent.com/97835399/159152280-9975d939-acf3-4534-8d5a-cbfedfccb0ee.png)
-
-
-Now the waveform of the integrated PLL and RVMYTH we use gtkwave.
-
-![image](https://user-images.githubusercontent.com/97835399/159637174-3c70157a-3df7-4d83-81d8-771d6e843748.png)
-
-## PLL Modelling: 
-Here we design the PLL as a clock multiplier and test the functionality. 
 
 
 
