@@ -38,75 +38,116 @@ Here we design the PLL as a clock multiplier and test the functionality.
 Using the Clock Pin the the PLL and the RVMYTH is connected and the functionality of the code is verified by the testbench. The verilog code for the above PLL is given below:
 
 
-                                        module pll1 (
-                                        output reg  CLK,
-                                        input  wire VCO_IN,
-                                        input  wire ENb_CP,
-                                        input  wire ENb_VCO,
-                                        input  wire REF
-                                        );
-                                         real period, lastedge, refpd;
+                        `timescale 1ns / 1ps
+                        module pll( CLK, VCO_IN, VDDA, VDDD, VSSA, VSSD, EN_VCO, REF);
 
-                                         initial begin
-                                         lastedge = 0.0;
-                                        period = 25.0; // 25ns period = 40MHz
-                                         CLK <= 0;
-                                         end
+                        input VSSD;
+                        input EN_VCO;
+                        input VSSA;
+                        input VDDD;
+                        input VDDA;
+                        input VCO_IN;
+                        output CLK;
+                        input REF;
+                        reg CLK;
+                        real period, lastedge, refpd;
+                        wire  VSSD, VSSA, VDDD, VDDA;
+ 
 
-                                        // Toggle clock at rate determined by period
-                                        always @(CLK or ENb_VCO) begin
-                                        if (ENb_VCO == 1'b1) begin
-                                        #(period / 2.0);
-                                        CLK <= (CLK === 1'b0);
-                                        end
-                                        else if (ENb_VCO == 1'b0) begin
-                                        CLK <= 1'b0;
-                                         end 
-                                         else begin
-                                         CLK <= 1'bx;
-                                         end
-                                         end
+                        initial begin
+                        lastedge = 0.0;
+                        period = 25.0; // 25ns period = 40MHz
+                        CLK <= 0;
+                        end
+
+                         // Toggle clock at rate determined by period
+                        always @(CLK or EN_VCO) begin
+                        if (EN_VCO == 1'b1) begin
+                         #(period / 2.0);
+                         CLK <= (CLK === 1'b0);
+                        end else if (EN_VCO == 1'b0) begin
+                        CLK <= 1'b0;
+                        end else begin
+                        CLK <= 1'bx;
+                        end
+                        end
    
-                                        // Update period on every reference rising edge
-                                        always @(posedge REF) begin
-                                        if (lastedge > 0.0) begin
-                                        refpd = $realtime - lastedge;
-                                          period =  (refpd / 8.0) ;
-                                        end
-                                        lastedge = $realtime;
-                                         end
-                                        endmodule
-                                        
+                        // Update period on every reference rising edge
+                        always @(posedge REF) begin
+                        if (lastedge > 0.0) begin
+                        refpd = $realtime - lastedge;
+                        // Adjust period towards 1/8 the reference period
+                         //period = (0.99 * period) + (0.01 * (refpd / 8.0));
+                        period =  (refpd / 8.0) ;
+                         end
+                        lastedge = $realtime;
+                        end
+                        endmodule
+
 The Testbench for the PLL is given below:
                                        
-                                module vsdminisoc (
-                                output wire OUT,
-                                input  wire reset,
-                                input  wire VCO_IN,
-                                input  wire ENb_CP,
-                                input  wire ENb_VCO,
-                                input  wire REF,
-                                //input  wire VREFL,
-                                input  wire VREFH
-                                 );
-
-                                wire CLK;
-                                wire [9:0] RV_TO_DAC;
+`timescale 1ns / 1ps
+module pll_tb();
    
-                                 rvmyth core (
-                                 .OUT(RV_TO_DAC),
-                                 .CLK(CLK),
-                                .reset(reset)
-                                 );
+    
+  reg VSSD;
+  reg EN_VCO;
+ 
+  reg VSSA;
+  reg VDDD;
+  reg VDDA;
+  reg VCO_IN;
+  reg REF;
+  
+  wire CLK;
 
-                               pll1 pll (
-                                .CLK(CLK),
-                                .VCO_IN(VCO_IN),
-                                .ENb_CP(ENb_CP),
-                                .ENb_VCO(ENb_VCO),
-                                 .REF(REF)
-                                  );  
-                                  endmodule
+
+ pll dut(CLK, VCO_IN, VDDA, VDDD, VSSA, VSSD, EN_VCO, REF);
+  
+  initial
+   begin
+   {REF,EN_VCO}=0;
+   VCO_IN = 1'b0 ;
+   VDDA = 1.8;
+   VDDD = 1.8;
+   VSSA = 0;
+   VSSD = 0;
+   
+   end
+   
+   initial
+ begin
+    $dumpfile("test.vcd");
+    $dumpvars(0,pll_tb);
+ end
+ 
+   initial
+    begin
+   // repeat(2)
+  //begin
+    // EN_VCO = 1;
+    //#100 REF = ~REF;
+     
+    //end
+ //repeat(2)
+  //begin
+    // EN_VCO = 1;
+     //#50 REF = ~REF;
+
+     //end
+
+    repeat(400)
+  begin
+     EN_VCO = 1;
+     #100 REF = ~REF;
+     #(83.33/2)  VCO_IN = ~VCO_IN;
+     
+     end
+     
+      $finish;
+    end
+endmodule
+
 
 
 
