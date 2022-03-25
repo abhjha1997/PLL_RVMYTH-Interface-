@@ -1,4 +1,4 @@
-# VSDminiSOC 
+# RVMYTH Integration with PLL:
 This Project deals with RISC-V based microprocessor and perform the physical design to get the SoC ready for tapeout, it consist of combining PLL with the rvmyth core and PLL is connected with the input clock to RVMYTH core. A testbench is created to test and analyze the working of the integrated subsystem.
 
 The first step consist of converting the RISC-V Processor TL-Verilog to to verilog file using Sandpiper-saas tool.
@@ -29,6 +29,8 @@ All the files are added to the test bench using include "file.v" in the testbenc
 
 
 Now the waveform of the integrated PLL and RVMYTH we use gtkwave.
+
+
 
 ![image](https://user-images.githubusercontent.com/97835399/159637174-3c70157a-3df7-4d83-81d8-771d6e843748.png)
 
@@ -130,6 +132,26 @@ The Testbench for the PLL is given below:
                         $finish;
                         end
                         endmodule
+                        
+                        
+![image](https://user-images.githubusercontent.com/97835399/160181556-fc4d8d49-409f-4ddd-b09c-f58159fd980b.png)
+
+                  
+ This generates the .vcd file not functionality of the PLL can be checked by waveform using gtkwave.
+ 
+ 
+![image](https://user-images.githubusercontent.com/97835399/160181691-e7f2aa48-4549-4804-85e1-320e17b274b2.png)
+
+## Combining both PLL and rvmyth:
+The next aim is to combine the PLL and RVMYTH core, top combine this we need to again write the verilog and corresponding test bench for the verilog file to check the functionality combined output.
+
+
+
+
+
+
+
+
 
 
 
