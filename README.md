@@ -145,6 +145,9 @@ The Testbench for the PLL is given below:
 ## Combining both PLL and rvmyth:
 The next aim is to combine the PLL and RVMYTH core, top combine this we need to again write the verilog and corresponding test bench for the verilog file to check the functionality combined output.
 
+![image](https://user-images.githubusercontent.com/97835399/160224759-a3fe2fe0-a4b7-4cea-b2f2-701af4880849.png)
+
+
 
 
 
