@@ -193,6 +193,9 @@ The snapshot of the synthesized netlist.
 ## Pre-Synthesis simulation:
 
 
+file:///home/abhishekjhavsd/Pictures/Screenshot%20from%202022-05-29%2018-57-04.png![image](https://user-images.githubusercontent.com/97835399/170871284-f0ac453d-52a8-4df4-8970-30bf94202793.png)
+
+
 ## Post-Synthesis simulation
 Use the following commands for post-synth simulation output.
 
