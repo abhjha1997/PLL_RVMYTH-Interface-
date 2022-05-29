@@ -190,6 +190,18 @@ The snapshot of the synthesized netlist.
 
 
 ![Screenshot from 2022-05-29 11-11-42 (1)](https://user-images.githubusercontent.com/97835399/170855345-d74031e6-58c7-4b7e-bb6c-eef9db010074.png)
+## Pre-Synthesis simulation:
+
+
+## Post-Synthesis simulation
+Use the following commands for post-synth simulation output.
+
+                        iverilog gls.v 
+                        ./a.out
+                        gtkwave gls.vcd 
+    
+    ![Screenshot 2022-05-29 122450](https://user-images.githubusercontent.com/97835399/170856163-18d7b44e-d51f-456f-9e1e-8b300288f8bb.png)
+
 
 
 
