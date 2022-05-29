@@ -170,20 +170,21 @@ To perform synthesys in yosys
 Just type yosys in linux shell and follow the script.
 
 
-read_verilog rvmyth_pll.v 
-read_liberty -lib avsd_pll_1v8.lib 
-read_liberty -lib sky130_fd_sc_hd__tt_025C_1v80.lib 
-synth -top rvmyth_pll_interface 
-dfflibmap -liberty sky130_fd_sc_hd__tt_025C_1v80.lib 
-opt 
-abc -liberty sky130_fd_sc_hd__tt_025C_1v80.lib -script +strash;scorr;ifraig;retime;{D};strash;dch,-f;map,-M,1,{D} 
-flatten 
-setundef -zero 
-clean -purge 
-rename -enumerate
-stat 
-write_verilog -noattr rvmyth_pll.synth.v 
-The synthesized netlist is rvmyth_pll.synth.v
+                  read_verilog rvmyth_pll.v 
+                  read_liberty -lib avsd_pll_1v8.lib 
+                  read_liberty -lib sky130_fd_sc_hd__tt_025C_1v80.lib 
+                  synth -top rvmyth_pll_interface 
+                  dfflibmap -liberty sky130_fd_sc_hd__tt_025C_1v80.lib 
+                  opt 
+                  abc -liberty sky130_fd_sc_hd__tt_025C_1v80.lib -script +strash;scorr;ifraig;retime;{D};strash;dch,-f;map,-M,1,{D} 
+                  flatten 
+                  setundef -zero 
+                  clean -purge 
+                  rename -enumerate
+                  stat 
+                  write_verilog -noattr rvmyth_pll.synth.v 
+                  The synthesized netlist is rvmyth_pll.synth.v
+                  
 
 The snapshot of the synthesized netlist.
 
