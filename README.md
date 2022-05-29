@@ -200,7 +200,7 @@ Use the following commands for post-synth simulation output.
                         ./a.out
                         gtkwave gls.vcd 
     
-    ![Screenshot 2022-05-29 122450](https://user-images.githubusercontent.com/97835399/170856163-18d7b44e-d51f-456f-9e1e-8b300288f8bb.png)
+![Screenshot 2022-05-29 122450](https://user-images.githubusercontent.com/97835399/170856163-18d7b44e-d51f-456f-9e1e-8b300288f8bb.png)
 
 
 
