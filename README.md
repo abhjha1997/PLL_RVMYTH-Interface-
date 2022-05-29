@@ -191,9 +191,11 @@ The snapshot of the synthesized netlist.
 
 ![Screenshot from 2022-05-29 11-11-42 (1)](https://user-images.githubusercontent.com/97835399/170855345-d74031e6-58c7-4b7e-bb6c-eef9db010074.png)
 ## Pre-Synthesis simulation:
+                                    iverilog rvmyth_pll.v rvmyth_pll_tb.v
+                                    ./a.out
+                                    gtkwave test1.vcd
 
-
-file:///home/abhishekjhavsd/Pictures/Screenshot%20from%202022-05-29%2018-57-04.png![image](https://user-images.githubusercontent.com/97835399/170871284-f0ac453d-52a8-4df4-8970-30bf94202793.png)
+![Screenshot from 2022-05-29 18-57-04](https://user-images.githubusercontent.com/97835399/170871496-39937bea-7c10-4026-baf1-4a527c9fac05.png)
 
 
 ## Post-Synthesis simulation
